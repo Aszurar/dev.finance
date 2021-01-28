@@ -1,3 +1,72 @@
+
+/* Global ================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* box-sizing por padrão é definifo como content-box, ou seja, a medida da caixa é relativa ao
+    conteúdo, no entanto, para evitar conflitos e erros no resultado final do visual, é recomendado
+    alterar para border-box */
+}
+
 body{
-    color: green;
+    background-color: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    /* sans-serif é uma fonte não serifada, ou seja, uma fonte que não possui detalhes em suas extremidades
+    ela é declarada após a fonte principal, para que, caso não seja encontrado ou de algum erro na Poppins,
+    então, será aplicado uma fonte sans-serif(não serifada) */
+}
+
+.container {
+    width: min(90vw, 800px);
+    /* min() é uma função que recebe 2 argumentos e escolhe o menor valor entre eles.
+    vw é viewport, ou seja, 90 partes da tela, logo, o css aplicará o menor valor de acordo com 
+    as 90 partes da tela versus os 800px, isso dependerá do tamanho da tela do navegador */
+    margin: auto;
+}
+
+/* Titles============================ */
+
+h2 {
+    margin-top: 3.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: normal;
+    color: #363f5f;
+}
+
+/* Header =========================== */
+
+header {
+    background-color: #2D4A22;
+    padding: 2rem 0 10rem;
+    text-align: center;
+}
+
+#logo {
+    color: white;
+    font-weight: 100;
+    font-size: 4rem;
+}
+
+/* Balance============================ */
+#balance{
+    margin-top: -8rem;
+}
+
+#balance h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.card {
+    background-color: white;
+    border-radius: 0.25rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+
+/* Footer============================= */
+footer {
+    text-align: center;
 }

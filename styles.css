@@ -2,10 +2,12 @@
     --dark-blue: #363f5f;
     --white: white;
     --light-blue: #969cb3;
-    --green-balance: #49AA26;
+    --green: #49AA26;
     --green-table: #12a454;
-    --red-table:  #e92929;
-    --green-hover-button-transaction: #3dd705;
+    --red:  #e92929;
+    --light-green: #3dd705;
+    --black-modal-overlay: rgba(0, 0, 0, 0.7);
+    --white-background-modal: #f0f2f5;
 }
 /* Global ================================= */
 * {
@@ -64,7 +66,7 @@ h2 {
 
 header {
     background-color: #2D4A22;
-    padding: 2rem 0 10rem;
+    padding: 2rem 0 11.5rem;
     text-align: center;
 }
 
@@ -110,7 +112,7 @@ header {
 }
 
 .card.total {
-    background-color: var(--green-balance);
+    background-color: var(--green);
     color: var(--white);
 }
 
@@ -118,26 +120,77 @@ header {
 
 a {
     text-decoration: none;
-    color: var(--green-balance);
+    color: var(--green);
 }
 
 a:hover {
-    color: var(--green-hover-button-transaction)
+    color: var(--light-green)
 }
 
 .button.new {
-    margin-bottom: .8rem;
+    margin-bottom: 1rem;
     /* Margin bottom não é aplicada em elementos que são display inline por padrão */
     display: inline-block;
 }
 
-#data-table {
-    /* Display block e overflow-x são para responsividade no mobile */
-    display: block;
-    overflow-x: auto;
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
+}
+
+button {
     width: 100%;
-    box-sizing: border-box;
+    height: 50px;
+    
+    padding: 0;
+
+    border: none;
+    border-radius: 0.25rem;
+    color: var(--white);
+    background-color: var(--green);
+    
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--light-green);
+}
+
+.button.cancel {
+    color: var(--red);
+
+    border: 2px solid var(--red);
+    border-radius: 0.25rem;
+
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover{
+    opacity: 1;;
+}
+
+#transaction {
+    /* Display block e overflow-x são para responsividade no mobile */
+    display: block; 
+    overflow-x: auto;
+    width:100%;
+}
+
+#data-table {
+    width: 100%;
+    /* remover as bordas das laterais e deixa só embaixo */
     border-spacing: 0 0.5rem;
     color: var(--light-blue);
 }
@@ -183,10 +236,76 @@ table tbody td {
     color: var(--green-table);
 }
 .expense {
-    color: var(--red-table);
+    color: var(--red);
+}
+/* Modal============================== */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-modal-overlay);
+
+    /* fixar o modal-overlay em uma camada acima dos outros elementos */
+    position: fixed;
+    /* puxa-lo para cima, para o topo da página */
+    top: 0;
+
+    /* Alinhar o modal ao centro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* "apagando" o modal-overlay visualmente */
+    opacity: 0;
+    /* removendo o conteúdo, o espaço ocupado pelo modal e modal-overlay da tela */
+    visibility: hidden;
+
+    /* subir o modal-overlay de camada para sobrepor o footer */
+    z-index: 999;
 }
 
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
+.modal {
+    background-color: var(--white-background-modal);
+    padding: 2.4rem;
+    /* ajustar a largura da caixa modal, ela terá no máximo uma largura de 500px
+    e caso seja diminuida, ocupará 90% da largura correspondente */
+    max-width: 500px;
+    width: 90%;
+
+
+    /* subir o modal de camada para sobrebopor ao footer */
+    position: relative;
+    z-index: 1;
+}
+
+/* Form=============================== */
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    padding: 0.8rem;
+    width: 100%;
+
+    border-radius: 0.2rem;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
 /* Footer============================= */
 footer {
     text-align: center;

@@ -9,34 +9,26 @@ const Modal = {
 
 }
 
+// configuração do localStorage
+// armazenando as transações no localstorage!
+const Storage = {
+    get(){
+        // Retorna o array de transações do localStorage ou retorna um array vazio
+       return JSON.parse(localStorage.getItem("dev.finances: transactions")) || []
+    },
+    
+    set(transactions) {
+        // configurando o array de transações para string para poder ser armazenado no
+        // localStorage
+        // JSON.stringify tem a função de transformar o array de transações em uma string
+        localStorage.setItem("dev.finances: transactions", JSON.stringify(transactions))
+    }
+}
 
 // calculo das entradas, saídas e total.
 const Transaction = {
-    all: [
-            {
-                description: 'Luz',
-                amount: -50000,
-                date: '23/01/2021'
-            },
-        
-            {
-                description: 'Criação de Website',
-                amount: 500000,
-                date: '23/01/2021'
-            },
-        
-            {
-                description: 'Internet',
-                amount: -20000,
-                date: '23/01/2021'
-            },
-            {
-                description: 'App',
-                amount: 240000,
-                date: '23/01/2021'
-            }
-        ]
-    ,
+    all: Storage.get(),
+
     add(transaction) {
         Transaction.all.push(transaction)
       
@@ -91,12 +83,13 @@ const DOM = {
     addTransaction(transaction, index) {
         const tr = document.createElement('tr');
         // agr, vamos preencher o tr com a variável html da função abaixo:
-        tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
         // agr vamos adicionar todo esse tr à tbody!
         DOM.transactionsContainer.appendChild(tr)
+        tr.dataset.index = index
     },
 
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
         const amount = Utils.formatCurrency(transaction.amount)
         
@@ -106,7 +99,7 @@ const DOM = {
             <td class="${CSSclass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
-                <img src="./assets/minus.svg" alt="Remover Transação">
+                <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover Transação">
             </td>
         `
 
@@ -133,6 +126,18 @@ const DOM = {
 
 
 const Utils = {
+    formatAmount(value) {
+        value = Number(value) * 100
+
+        return value
+    },
+
+    formatDate(date) {
+        const splittedDate = date.split("-")
+        
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    },
+
     formatCurrency(value) {
         // gerando o sinal de -0
         const signal = Number(value) < 0 ? "-" : ""
@@ -151,10 +156,8 @@ const Utils = {
 
         return signal + value
     }
+
 }
-// aqui poderia fazer um tratamento de erro para que caso seja 
-// passado uma transação com um índice maior do que a quantidade
-// que já se tem, a função não prosiga e seja alertado ao usuário
 
 const Form = {
     description: document.querySelector('input#description'),
@@ -173,8 +176,6 @@ const Form = {
     //Verificar se todoas as informações foram preenchidas
         const { description, amount, date } = Form.getValues()
 
-        console.log(description)
-
         // método trim remove todos os espaços vazios do description
         // isso é feito para verificarmos se tem ou não algum conteúdo
         // na string
@@ -185,19 +186,49 @@ const Form = {
         }
     },
 
+    formatValue(){
+    // formatar os dados para salvar
+        let { description, amount, date } = Form.getValues()
+        
+        amount = Utils.formatAmount(amount)
+        date = Utils.formatDate(date)
+
+        return { 
+            description, 
+            amount, 
+            date
+        }
+    },
+    
+    saveTransaction(transaction){
+        Transaction.add(transaction)
+    },
+
+    clearFields(){
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+    },
+
     submit(event) {
         event.preventDefault()
 
         
 
         try {
-            Form.validateFields()
-            // Algoritmo
-            // formatar os dados para salvar
+
+            Form.validateFields() 
+            // formatar os dados
+            const transaction = Form.formatValue()
+
             // salvar
+            Form.saveTransaction(transaction)
+
             // apagar os dados do formulário
+            Form.clearFields()
+            
             // modal feche
-            // Atualizar App
+            Modal.myToggleModal()
         } catch (error) {
             // capturar o erro e mostrar ao usuário!
             alert(error.message)
@@ -206,14 +237,18 @@ const Form = {
     }
 }
 
+
+
 const App = {
     init(){
-        Transaction.all.forEach(transaction => {
-            DOM.addTransaction(transaction)
+        Transaction.all.forEach((transaction, index) => {
+            DOM.addTransaction(transaction, index)
         
         });      
     
-        DOM.updateBalance()    
+        DOM.updateBalance() 
+        
+        Storage.set(Transaction.all)
     },
 
     reload() {

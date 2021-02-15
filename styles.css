@@ -1,9 +1,13 @@
 :root {
     --dark-blue: #363f5f;
     --white: white;
+    --black: black;
+    --middle-black: #1d1e22;
+    --light-black: #3B3F4C;
     --light-blue: #969cb3;
     --green: #49AA26;
     --green-table: #12a454;
+    --dark-green: #2D4A22;
     --red:  #e92929;
     --light-green: #3dd705;
     --black-modal-overlay: rgba(0, 0, 0, 0.7);
@@ -20,15 +24,22 @@
 }
 
 html {
+    min-height: 100%;
     font-size: 93.75% /* equivale a 15px*/;
 }
 
 body{
-    background-color: #f0f2f5;
+    background: linear-gradient(to top, var(--white), var(--white-background-modal), var(--light-green), var(--black) 120%);
     font-family: 'Poppins', sans-serif;
     /* sans-serif é uma fonte não serifada, ou seja, uma fonte que não possui detalhes em suas extremidades
     ela é declarada após a fonte principal, para que, caso não seja encontrado ou de algum erro na Poppins,
     então, será aplicado uma fonte sans-serif(não serifada) */
+}
+
+body.darkness {
+    background: linear-gradient(to bottom, var(--light-green), var(--black) 50%);
+    /* background: linear-gradient(to bottom, var(--green), var(--black) 50%); */
+
 }
 
 .container {
@@ -65,7 +76,8 @@ h2 {
 /* Header =========================== */
 
 header {
-    background-color: #2D4A22;
+    /* background-color: var(--dark-green); */
+    background: linear-gradient(to bottom, var(--dark-green), var(--light-green));
     padding: 2rem 0 11.5rem;
     text-align: center;
 }
@@ -74,6 +86,38 @@ header {
     color: var(--white);
     font-weight: 100;
     font-size: 4rem;
+}
+
+.toggle-day-night{
+    width: min(90vw, 800px);
+    margin: auto;
+    text-align: right;
+}
+
+.toggle-on {
+    display: none;
+}
+
+.toggle-on i{
+    color: black;
+}
+
+.toggle-off i{
+    color: var(--white);
+}
+
+.toggle-on i, 
+.toggle-off i {
+    font-size: 4.5rem;
+    cursor: pointer;
+}
+
+.toggle-on.activate {
+    display: inline-block;
+}
+
+.toggle-off.desactivate {
+    display: none;
 }
 
 /* Balance============================ */
@@ -93,6 +137,11 @@ header {
     margin-bottom: 2rem;
 
     color: var(--dark-blue);
+}
+
+.card.darkness {
+    color: var(--white);
+    background-color: var(--middle-black);
 }
 
 .card h3 {
@@ -118,13 +167,31 @@ header {
 
 /* Transaction============================= */
 
-a {
+#transaction a {
     text-decoration: none;
-    color: var(--green);
+    color: var(--white);
+    background-color: var(--green);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    border: 0.125rem solid var(--white-background-modal);
+
 }
 
-a:hover {
-    color: var(--light-green)
+#transaction.darkness a {
+    border: 0.125rem solid var(--black);
+    color: var(--black);
+}
+
+#transaction a:hover {
+    transition: 0.7s ease-in;
+    color: var(--light-green);
+    background-color: var(--white);
+    border: 0.125rem solid var(--green);
+}
+
+#transaction.darkness a:hover {
+    color: var(--light-green);
+    background-color: var(--black)
 }
 
 .button.new {
@@ -147,18 +214,32 @@ a:hover {
 button {
     width: 100%;
     height: 50px;
-    
+    font-weight: bold;
     padding: 0;
-
-    border: none;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border: 2px solid var(--light-green); ;
     border-radius: 0.25rem;
-    color: var(--white);
-    background-color: var(--green);
+    color: var(--green);
+    background-color: var(--white-background-modal);
     
     cursor: pointer;
 }
 
+.modal-overlay.darkness .modal button {
+    transition: 0.7s;
+    background-color: var(--middle-black);
+}
+
 button:hover {
+    color: var(--white);
+    transition: 0.7s;
+    background-color: var(--light-green);
+}
+
+.modal-overlay.darkness .modal button:hover {
+    color: var(--middle-black);
+    transition: 0.7s;
     background-color: var(--light-green);
 }
 
@@ -173,7 +254,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content:center;
-
+    font-weight: bold;;
     opacity: 0.6;
 }
 
@@ -215,6 +296,11 @@ table th {
     background-color: var(--white);
 }
 
+#transaction.darkness table thead tr th{
+    background-color: var(--light-black);
+    color: var(--white);
+}
+
 table tbody tr {
     opacity: 0.7;
 }
@@ -226,16 +312,46 @@ table tbody tr:hover {
 table tbody td {
     background-color: var(--white);
     padding: 1rem 2rem;
+
+}
+
+table tbody tr td:last-child img {
+    border-radius: 50%;
+}
+
+table tbody tr td:last-child img:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    background-color: var(--black);
+    transition: 0.7s;
+
+}
+
+#transition.darkness table tbody tr td:last-child img:hover{
+    background-color: var(--black);
 }
 
 .description {
-    color: var(--dark-blue)
+    color: var(--dark-blue);
 }
 
 .income {
     color: var(--green-table);
 }
+
 .expense {
+    color: var(--red);
+}
+
+#transaction.darkness table tbody tr td{
+    background-color: var(--light-black);
+    color: var(--white);
+}
+
+#transaction.darkness table tbody tr td.income {
+    color: var(--light-green);
+}
+#transaction.darkness  table tbody tr td.expense {
     color: var(--red);
 }
 /* Modal============================== */
@@ -282,6 +398,10 @@ table tbody td {
     z-index: 1;
 }
 
+.modal-overlay.darkness .modal {
+    background-color: var(--middle-black);
+}
+
 /* Form=============================== */
 #form {
     max-width: 500px;
@@ -289,6 +409,10 @@ table tbody td {
 
 #form h2 {
     margin-top: 0;
+}
+
+.modal-overlay.darkness .modal #form  h2{
+    color: var(--white)
 }
 
 input {
@@ -299,6 +423,16 @@ input {
     border-radius: 0.2rem;
 }
 
+.modal-overlay.darkness .modal input {
+    background-color: var(--light-black);
+    color: var(--white);
+}
+
+.modal-overlay.darkness .modal input::placeholder {
+    color: var(--white);
+    opacity: 0.6;
+}
+
 .input-group {
     margin-top: 0.8rem;
 }
@@ -306,13 +440,33 @@ input {
 .input-group small {
     opacity: 0.4;
 }
+
+
+
+.input-group a {
+    text-decoration: none;
+}
+
+.input-group a:hover {
+    transition: 0.7s;
+    background-color: var(--red);
+    color: var(--white);
+}
+.modal-overlay.darkness .modal .input-group a:hover {
+    color: var(--middle-black);
+}
 /* Footer============================= */
 footer {
     text-align: center;
     padding: 4rem 0 2rem;
-    
-    color: var(--dark-blue);
+    font-weight: bold;
+
+    color: var(--black);
     opacity: 0.6;
+}
+
+footer.darkness {
+    color: var(--white);
 }
 
 /* Responsividade====================== */

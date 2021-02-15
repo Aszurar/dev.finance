@@ -1,12 +1,34 @@
 //pegando o modal-overlay 
 const modal_overlay = document.querySelector('.modal-overlay')
 
+const DayNight = {
+    toggleDayNight(){
+        const toggleOn = document.querySelector('.toggle-on')
+        const toggleOff = document.querySelector('.toggle-off')
+        const body = document.querySelector('body')
+        const cards = document.querySelectorAll('.card')
+        const transaction = document.getElementById('transaction')
+        const header = document.querySelector('header')
+        const footer = document.querySelector('footer')
+        
+        toggleOn.classList.toggle('activate')
+        toggleOff.classList.toggle('desactivate')
+        body.classList.toggle('darkness')
+        header.classList.toggle('darkness')
+        transaction.classList.toggle('darkness')
+        footer.classList.toggle('darkness')
+        modal_overlay.classList.toggle('darkness')
+
+        cards.forEach(card => {
+            card.classList.toggle('darkness')
+        })
+    }
+}
 const Modal = {
     myToggleModal(){
         // Quando o botão for clicado, adicione a classe active no model overlay
         modal_overlay.classList.toggle('active')
     }
-
 }
 
 // configuração do localStorage
@@ -129,7 +151,7 @@ const Utils = {
     formatAmount(value) {
         value = Number(value) * 100
 
-        return value
+        return Math.round(value)
     },
 
     formatDate(date) {

@@ -1,4 +1,4 @@
-# dev.finance$| Discover
+# dev.finance$ | Discover
  O projeto dev.finance é um site que calcula suas transações bancárias, fornecendo o total de entrada e saída dos seus movimentos financeiros, além do saldo de sua conta!.
 <h2 align="center">dev.finance$</h2>
 

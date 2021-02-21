@@ -1,0 +1,7 @@
+{% extends "index.njk" %}
+
+{% block modal %}
+    <form action="/devfinance" method="post">
+        {% include "fields.njk" %}
+    </form>
+{% endblock %}

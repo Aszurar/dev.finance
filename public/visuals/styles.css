@@ -8,7 +8,7 @@
     --green: #49AA26;
     --green-table: #12a454;
     --dark-green: #2D4A22;
-    --red:  #e92929;
+    --red:  #ff3e3e;
     --light-green: #3dd705;
     --black-modal-overlay: rgba(0, 0, 0, 0.7);
     --white-background-modal: #f0f2f5;
@@ -167,37 +167,125 @@ header {
 
 /* Transaction============================= */
 
-#transaction a {
+#transaction a,
+#search-button {
+    color: var(--green);
+    background-color: var(--white);
+    border: 2px solid var(--green);
+
     text-decoration: none;
-    color: var(--white);
-    background-color: var(--green);
     padding: 1rem;
     border-radius: 0.25rem;
-    border: 0.125rem solid var(--white-background-modal);
-
+    cursor: pointer;
 }
 
-#transaction.darkness a {
-    border: 0.125rem solid var(--black);
-    color: var(--black);
-}
-
-#transaction a:hover {
-    transition: 0.7s ease-in;
-    color: var(--light-green);
-    background-color: var(--white);
-    border: 0.125rem solid var(--green);
-}
-
-#transaction.darkness a:hover {
+#transaction.darkness a,
+#transaction.darkness #search-button {
+    border: 0.125rem solid var(--light-green);
     color: var(--light-green);
     background-color: var(--black)
+}
+
+#transaction a:hover,
+#search-button:hover {
+    transition: 0.35s ease-in;
+    color: var(--white);
+    background-color: var(--green);
+    border: 0.125rem solid var(--white);
+    box-shadow: 0.5px 1px 8px 1px var(--green);
+}
+
+#transaction.darkness a:hover,
+#transaction.darkness #search-button:hover {
+    transition: 0.35s ease-in;
+    color: var(--black);
+    background-color: var(--light-green);
+    border: 0.125rem solid var(--black);
+    box-shadow: 0.5px 0.5px 8px 1px var(--light-green);
+
 }
 
 .button.new {
     margin-bottom: 1rem;
     /* Margin bottom não é aplicada em elementos que são display inline por padrão */
     display: inline-block;
+}
+
+#transaction a.activate {
+    color: var(--light-green);
+    background-color: var(--white);
+    border: 0.125rem solid var(--green);
+}
+
+#transaction.darkness a.activate {
+    color: var(--light-green);
+    background-color: var(--black)
+}
+
+.interactions {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.interactions .search {
+    display: flex;
+    align-items: center;
+
+}
+
+#search {
+    width: 17.5rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--green);
+    border: 0.125rem solid transparent;
+    border-radius: 0.25rem;
+}
+
+#search:hover{
+    border: 0.125rem solid var(--white);
+    box-shadow: 0.5px 1px 10px 2px var(--white);
+}
+
+#search.activate {
+    border: 0.125rem solid var(--white);
+    box-shadow: 0.5px 1px 10px 2px var(--white);
+}
+
+#transaction.darkness #search {
+    background-color: var(--black);
+    border-bottom: 0.125rem solid var(--light-green);
+    color: var(--light-green);
+}
+
+#search::placeholder {
+    font-weight: normal;
+    opacity: 0.6;
+    color: var(--green);
+}
+
+
+#transaction.darkness #search::placeholder {
+    opacity: 0.7;
+}
+
+#transaction.darkness #search:hover{
+    box-shadow: 0.5px 0.5px 10px 2px var(--light-green);
+    border: 0.125rem solid var(--light-green);
+}
+
+
+#search-button {
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+
+    width: initial;
+    height: initial;
+    padding: 0.2rem 0.5rem;
+    font-size: 0;
+    letter-spacing: 0;
 }
 
 .input-group.actions {
@@ -315,18 +403,6 @@ table tbody td {
 
 }
 
-table tbody tr td:last-child img {
-    border-radius: 50%;
-}
-
-table tbody tr td:last-child img:hover{
-    cursor: pointer;
-    transform: scale(1.2);
-    background-color: var(--black);
-    transition: 0.7s;
-
-}
-
 #transition.darkness table tbody tr td:last-child img:hover{
     background-color: var(--black);
 }
@@ -354,6 +430,67 @@ table tbody tr td:last-child img:hover{
 #transaction.darkness  table tbody tr td.expense {
     color: var(--red);
 }
+
+.delete-button, 
+.edit-button {
+    height: initial;
+    padding: 0.2rem 0;
+    color: var(--red);
+    border: 2px solid var(--red);
+    border-radius: 0.3rem !important;
+    background-color: var(--white);
+    transition: 0.5s !important;
+}
+
+.edit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0 !important;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background-color: var(--white) !important;
+    color: var(--light-green) !important;
+    border: 2px solid var(--light-green) !important;
+}
+
+#transaction.darkness  table tbody tr td .delete-button {
+    background-color: var(--light-black);
+}
+
+#transaction.darkness  table tbody tr td .edit-button {
+    background-color: var(--light-black) !important;
+}
+
+.delete-button:hover {
+    color: var(--white);
+    background-color: var(--red);
+    transform: scale(1.2);
+    box-shadow: 0.5px 0.5px 8px 1px var(--red);
+}
+
+.edit-button:hover {
+    color: var(--white) !important;
+    background-color: var(--light-green) !important;
+    transform: scale(1.2);
+    box-shadow: 0.5px 0.5px 8px 1px var(--light-green) !important;
+}
+
+#transaction.darkness  table tbody tr td .delete-button:hover {
+    color: var(--black);
+    background-color: var(--red);
+    box-shadow: 0.5px 0.5px 8px 1px var(--red);
+}
+
+#transaction.darkness  table tbody tr td .edit-button:hover {
+    color: var(--black) !important;
+    background-color: var(--light-green) !important;
+}
+
 /* Modal============================== */
 .modal-overlay {
     width: 100%;
@@ -433,12 +570,19 @@ input {
     opacity: 0.6;
 }
 
+input[type="number"] {
+    margin-bottom: 0.2rem;
+}
+
 .input-group {
     margin-top: 0.8rem;
 }
 
 .input-group small {
     opacity: 0.4;
+}
+.modal-overlay.darkness .modal .input-group small {
+    color: var(--white);
 }
 
 

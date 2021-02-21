@@ -1,0 +1,9 @@
+{% extends "index.njk" %}
+
+{% block modal %}
+    <form action="/devfinance?_method=PUT" method="post">
+        {% include "fields.njk" %}
+
+        <input type="hidden" name="id" value="{{movement.id}}">
+    </form>
+{% endblock %}

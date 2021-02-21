@@ -1,0 +1,62 @@
+    <div class="modal-overlay">
+        <div class="modal">
+            <div id="form">
+                <h2>Nova Transação</h2>
+                <div class="input-group">
+                    <label 
+                            class="sr-only" 
+                            for="description">Descrição
+                    </label>
+                    <input 
+                            type="text" 
+                            name="description" 
+                            id="description" 
+                            placeholder="Descrição"
+                            title="Informe sobre sua transação"
+                            autocomplete="on"
+                            value="{{movement.description}}"
+                            required
+                    />
+                </div>
+                    
+                <div class="input-group">
+                    <label 
+                        class="sr-only" 
+                        for="amount">Valor</label>
+                    <input 
+                        type="number"
+                        step="0.01" 
+                        name="amount" 
+                        id="amount" 
+                        placeholder="0,00"
+                        autocomplete="on"
+                        title="Digite o valor de sua transação"
+                        value="{{movement.value}}"
+                        required
+
+                    />
+                    <small>Use o sinal - (negativo) para
+                    despesas e, (vírgula) para casas decimais</small>
+                </div>
+
+                <div class="input-group">
+                    <label 
+                        class="sr-only" 
+                        for="date">Data</label>
+                    <input 
+                        type="date" 
+                        name="date" 
+                        id="date"
+                        title="Informe a data que realizou a transação"
+                        value="{{movement.date}}"
+                        required 
+                    />
+                </div>
+
+                <div class="input-group actions">
+                    <a href="/" onclick="Modal.myToggleModal(), Modal.newTransactionsActivate()" class="button cancel">Cancelar</a>
+                    <button type="submit" onclick="Modal.newTransactionsActivate()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>

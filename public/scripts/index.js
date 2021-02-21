@@ -1,11 +1,10 @@
-//pegando o modal-overlay 
+const modal_overlay = document.querySelector('.modal-overlay')
 
 // dark-mode
 // Infezlimente após a adição das rotas, das páginas create, edit... o darkmode não permance ativo.
 // Funcionava corretamente antes da adição das rotas para o banco de dadosl
 const DayNight = {
     toggleDayNight(){
-        const modal_overlay = document.querySelector('.modal-overlay')
         const toggleOn = document.querySelector('.toggle-on')
         const toggleOff = document.querySelector('.toggle-off')
         const body = document.querySelector('body')

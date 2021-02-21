@@ -51,7 +51,6 @@ module.exports = {
 
     filterOrNo(filter){
 
-        console.log(filter);
         let query = ""
         let filterQuery = ""
 

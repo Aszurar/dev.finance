@@ -1,5 +1,9 @@
 {% extends "index.njk" %}
 
+{% block title %}
+    <title>Nova Transação</title>
+{% endblock %}
+
 {% block modal %}
     <form action="/devfinance" method="post">
         {% include "fields.njk" %}

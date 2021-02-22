@@ -19,7 +19,7 @@ const DayNight = {
         header.classList.toggle('darkness')
         transaction.classList.toggle('darkness')
         footer.classList.toggle('darkness')
-        modal_overlay.classList.toggle('darkness')
+        // modal_overlay.classList.toggle('darkness')
         cards.forEach(card => {
             card.classList.toggle('darkness')
         })
@@ -61,17 +61,23 @@ const IncomesAndExpenses = {
         const values = document.querySelectorAll('.values')
 
         values.forEach(value => {
-            console.log('ALouuuu')
             if(value.innerHTML.includes("-")) {
                 value.classList.add("expense")
             } else {
                 value.classList.add("income")
             }
         })
+    },
+    modalTitleSwitch() {
+        const pageTitle = document.querySelector('title')
+        let modalTitle = document.querySelector(' .modal-overlay .modal #form h2')
+        
+        modalTitle.innerHTML = pageTitle.innerHTML 
     }
 }
 
 IncomesAndExpenses.incomesAndExpenseColors()
+IncomesAndExpenses.modalTitleSwitch()
 
 
 //===========dev.finance$ original===============

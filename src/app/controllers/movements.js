@@ -1,6 +1,10 @@
 const Movement = require('../models/Movement')
 const { date, formatValuesBRLv1 } = require('../../lib/tools')
 
+const modalTitle = {
+    subtitles: ['Nova Transação', 'Editar Transação', 'dev.finance$']
+}
+
 module.exports = {
     async index(req, res) {
         let { filter } = req.query
@@ -22,14 +26,26 @@ module.exports = {
           totals.incomes = formatValuesBRLv1(totals.incomes)
           totals.expenses = formatValuesBRLv1(totals.expenses)
 
-        return res.render('index', { movements, totals, filter })
+        return res.render('index', { movements, totals, filter, modalTitle })
 
     },
 
     create(req, res) {
-        return res.render("create")
+        return res.render("create", { modalTitle } )
     },    
     
+    async edit(req, res) {
+        const id = req.params.id
+
+        const results = await Movement.findMovement(id)
+        const movement = results.rows[0]
+
+        movement.value = (movement.value / 100)
+        movement.date = date(movement.date).iso
+
+        return res.render("edit", { movement, modalTitle })
+    },
+
     async post(req, res) {
         const keys = Object.keys(req.body)
 
@@ -43,18 +59,6 @@ module.exports = {
         const movement = results.rows[0]
 
         return res.redirect('/')
-    },
-
-    async edit(req, res) {
-        const id = req.params.id
-
-        const results = await Movement.findMovement(id)
-        const movement = results.rows[0]
-
-        movement.value = (movement.value / 100)
-        movement.date = date(movement.date).iso
-
-        return res.render("edit", { movement })
     },
 
     async put(req, res) {

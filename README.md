@@ -14,7 +14,7 @@ ___
 
 ___
 
-<div align="center" ><img src="" width="500"></div> 
+<div align="center" ><img src="https://media.giphy.com/media/Tjn1U4ubfS7C2kMxqy/giphy.gif" width="500"></div> 
 
 ___
 
@@ -35,9 +35,9 @@ Com as adições feitas em cima do projeto original, **agora também é possíve
 
 * Versão Mobile:
  
-  <img src="https://i.imgur.com/zF5KIPt.png" width="300">___________<img src="https://i.imgur.com/8guUrUo.png" width="300">
+  <img src="https://i.imgur.com/zF5KIPt.png" width="300">___________<img src="https://i.imgur.com/Sc36wAD.png" width="300">
   
-  <img src="https://i.imgur.com/Sc36wAD.png" width="300">___________<img src="https://i.imgur.com/XAGusqM.png" width="300">
+  <img src="https://i.imgur.com/8guUrUo.png" width="300">___________<img src="https://i.imgur.com/XAGusqM.png" width="300">
 ___
 ## :interrobang: Motivo
 
@@ -98,8 +98,8 @@ ___
   ``` 
     
   - Para a instalão do Node, baixe e instale do site oficial: [Node.js](https://nodejs.org/en/) 
-  - É necessário configurar o acesso do banco de dados no arquivo db na pasta config com a senha de acesso a seu postgres, por padrão é postgres
-      - 
+  - É necessário configurar o acesso do banco de dados no arquivo db na pasta config com a senha de acesso a seu postgres, por padrão é postgres.
+ 
   - Clonar o projeto:
   ```bash
     $ git clone https://github.com/Aszurar/dev.finance.git

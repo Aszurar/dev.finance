@@ -87,15 +87,9 @@ ___
 
   - Antes de tudo, é necessário a instalação das tecnologias citadas acima e das das dependências utilizadas no projeto execute os comandos abaixo em um terminal aberto na pasta do projeto: 
   ```bash
-     $ npm install express
+      npm
 
-     $ npm install nunjucks 
-
-     $ npm install browser-sync npm-run-all -D
-
-     $ npm install browser-sync npm-run-all -D
-
-     $ sudo apt-get install postgresql
+     sudo apt-get install postgresql
   ``` 
     
   - Para a instalão do Node, baixe e instale do site oficial: [Node.js](https://nodejs.org/en/) 

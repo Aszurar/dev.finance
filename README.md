@@ -63,8 +63,10 @@ Assim, estabeleci tais metas:
   <img src="https://i.imgur.com/hjSfk45.png" width="800">
 
 * Remoção:
+ 
   <img src="https://i.imgur.com/zWHnPlA.png" width="800">
 * Pesquisa:
+ 
   <img src="https://i.imgur.com/CkkMYgH.png" width="800">
 
 ___
@@ -88,7 +90,9 @@ ___
   - Antes de tudo, é necessário a instalação das tecnologias citadas acima e das das dependências utilizadas no projeto execute os comandos abaixo em um terminal aberto na pasta do projeto: 
   ```bash
       npm
-
+   ```
+  - Instalar o postgresql 
+   ```bash
      sudo apt-get install postgresql
   ``` 
     

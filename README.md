@@ -87,7 +87,13 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [PostgreSQL](https://www.postgresql.org/)
 ___
 ## :package: Como baixar e executar o projeto
-
+  
+   - Clonar o projeto:
+  ```bash
+    $ git clone https://github.com/Aszurar/dev.finance.git
+  ```
+  - Para a instalão do Node, baixe e instale do site oficial: [Node.js](https://nodejs.org/en/) 
+  
   - Antes de tudo, é necessário a instalação das tecnologias citadas acima e das das dependências utilizadas no projeto execute os comandos abaixo em um terminal aberto na pasta do projeto: 
   ```bash
       npm
@@ -97,13 +103,9 @@ ___
      sudo apt-get install postgresql
   ``` 
     
-  - Para a instalão do Node, baixe e instale do site oficial: [Node.js](https://nodejs.org/en/) 
   - É necessário configurar o acesso do banco de dados no arquivo db na pasta config com a senha de acesso a seu postgres, por padrão é postgres.
  
-  - Clonar o projeto:
-  ```bash
-    $ git clone https://github.com/Aszurar/dev.finance.git
-  ```
+
  - Execução - Abra a pasta do projeto com alguma IDE(Vscode) ou simplesmente abra o terminal na pasta do projeto e execute o comando abaixo:
    ```bash
       $ npm start

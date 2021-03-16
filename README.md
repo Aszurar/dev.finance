@@ -16,7 +16,7 @@ ___
 
 <div align="center" ><img src="https://media.giphy.com/media/Tjn1U4ubfS7C2kMxqy/giphy.gif" width="500"></div>
 
-(**Link do vídeo completo sobre o projeto**)[https://www.youtube.com/watch?v=DQ_U6KDpaPs&feature=youtu.be]
+[**Link do vídeo completo sobre o projeto**](https://www.youtube.com/watch?v=DQ_U6KDpaPs&feature=youtu.be)
 
 ___
 
